@@ -23,13 +23,17 @@ var stringifyJSON = function(obj) {
 		} else if (typeof(element) == 'object') {
 			if (Array.isArray(element)) {
 				result += '[';
-				_.each(element, function(arrayElement) {
-					result += convertTypes(arrayElement);
-				});
+				if (element.length > 0) {
+					_.each(element, function(arrayElement) {
+						// need to adjust so last index doesn't indclude ','
+						result += convertTypes(arrayElement) + ',';
+					});
+				}
 				result += ']';
 			} else {
 				result += '{';
 				_.each(element, function(value, key) {
+					// need to adjust so last index doesn't indclude ','
 					result += '"' + key.toString() + '":' + convertTypes(value) + ',';
 				});
 				result += '}';
