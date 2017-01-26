@@ -4,7 +4,21 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
-  // your code here
+var getElementsByClassName = function(className) {
+	// Store elements in an array
+	// Use recursion somehow
+	var result = [];
+
+	console.log($(this));
+	console.log(className);
+	console.log(this);
+	// base
+	//if($(this)._.contains(className)) {
+	//	result.push(this);
+	//} 
+
+	// recursive
+
+
+	return result;
 };
