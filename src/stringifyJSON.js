@@ -22,12 +22,14 @@ var stringifyJSON = function(obj) {
 			result += '"' + element + '"';
 		} else if (typeof(element) == 'object') {
 			if (Array.isArray(element)) {
-				_.each(element, function() {
-					
+				_.each(element, function(arrayElement) {
+					result += '[' + convertTypes(arrayElement) + ']';
 				});
 			}
 		}
 	}
+
+	convertTypes(obj);
 	// recursive case
 	// typeOf = object
 	// if array then have to include []
