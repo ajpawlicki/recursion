@@ -27,10 +27,13 @@ var stringifyJSON = function(obj) {
 					result += convertTypes(arrayElement);
 				});
 				result += ']';
+			} else {
+				result += '{';
+				_.each(element, function(value, key) {
+					result += '"' + key.toString() + '":' + convertTypes(value) + ',';
+				});
+				result += '}';
 			}
-			_.each(element, function(value, key) {
-				result += '{"' + key.toString() + '":' + convertTypes(value) + '}';
-			})
 		}
 	}
 
