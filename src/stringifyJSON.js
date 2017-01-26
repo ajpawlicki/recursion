@@ -10,12 +10,18 @@ var stringifyJSON = function(obj) {
 	// typeOf = string or number
 	// condition to find base case: object or array has no more nest
 
-	if ()
+	if (typeof(element) == 'number') {
+		result += element.toString();
+	} else if (typeof(element) == 'string') {
+		result += '"' + element + '"';
+	} else if (typeof(element) == 'object') {
+		
+	}
 
 	// recursive case
 	// typeOf = object
 	// if array then have to include []
 	// if object then have to include {}
-	
+
 	return result;
 };
