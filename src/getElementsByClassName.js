@@ -17,19 +17,19 @@ var getElementsByClassName = function(className) {
 	var search = function(node) {
 		// base case
 		if(_.contains(node.classList, className)) {
-			console.log('node: ', node);
+			// console.log('node: ', node);
 			nodeList.push(node);
 		}
 		// recursive case
-		_.each(node, function(childNode) {
-			console.log('childNode: ', childNode);
+		_.each(node.childNodes, function(childNode) {
+			// console.log('childNode: ', childNode);
 			search(childNode);
 		});
 	}
 
 	search(document.body);
 
-	console.log(nodeList);
+	// console.log(nodeList);
 	
 	return nodeList;
 };
