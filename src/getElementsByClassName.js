@@ -7,18 +7,30 @@
 var getElementsByClassName = function(className) {
 	// Store elements in an array
 	// Use recursion somehow
-	var result = [];
+	// Need to create internal function to use push and recursion together.
 
-	console.log($(this));
-	console.log(className);
-	console.log(this);
+	var nodeList = [];
+
+	//console.log(document.body.classList);
+
+	// Create search function to look for elements with className
+	var search = function(node) {
+		// base case
+		if(_.contains(node.classList, className)) {
+			console.log(node);
+			nodeList.push(node);
+		}
+		// recursive case
+		_
+	}
+
+	search(document.body);
+
 	// base
-	//if($(this)._.contains(className)) {
-	//	result.push(this);
-	//} 
-
+	// find element with class = className variable
+	//
 	// recursive
 
+	return nodeList;
 
-	return result;
 };
