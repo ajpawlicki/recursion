@@ -9,15 +9,25 @@ var stringifyJSON = function(obj) {
 	// base case
 	// typeOf = string or number
 	// condition to find base case: object or array has no more nest
-
-	if (typeof(element) == 'number') {
-		result += element.toString();
-	} else if (typeof(element) == 'string') {
-		result += '"' + element + '"';
-	} else if (typeof(element) == 'object') {
-		
+	var convertTypes = function (element) {
+		if (typeof(element) == 'undefined') {
+			result += 'null';
+		} else if (typeof(element) == 'function') {
+			result += 'null';
+		} else if (typeof(element) == 'boolean') {
+			result += element ? 'true' : 'false';
+		} else if (typeof(element) == 'number') {
+			result += element.toString();
+		} else if (typeof(element) == 'string') {
+			result += '"' + element + '"';
+		} else if (typeof(element) == 'object') {
+			if (Array.isArray(element)) {
+				_.each(element, function() {
+					
+				});
+			}
+		}
 	}
-
 	// recursive case
 	// typeOf = object
 	// if array then have to include []
