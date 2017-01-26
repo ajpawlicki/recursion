@@ -26,6 +26,9 @@ var stringifyJSON = function(obj) {
 					result += '[' + convertTypes(arrayElement) + ']';
 				});
 			}
+			_.each(element, function(value, key) {
+				result += '{"' + key.toString() + '":' + convertTypes(value) + '}';
+			})
 		}
 	}
 
