@@ -22,9 +22,11 @@ var stringifyJSON = function(obj) {
 			result += '"' + element + '"';
 		} else if (typeof(element) == 'object') {
 			if (Array.isArray(element)) {
+				result += '[';
 				_.each(element, function(arrayElement) {
-					result += '[' + convertTypes(arrayElement) + ']';
+					result += convertTypes(arrayElement);
 				});
+				result += ']';
 			}
 			_.each(element, function(value, key) {
 				result += '{"' + key.toString() + '":' + convertTypes(value) + '}';
