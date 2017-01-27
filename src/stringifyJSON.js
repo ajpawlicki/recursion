@@ -4,45 +4,50 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-	var result = '';
+	var result = [];
 
 	// base case
 	// typeOf = string or number
 	// condition to find base case: object or array has no more nest
 	var convertTypes = function (element) {
 		if (typeof(element) == 'undefined' || typeof(element) == 'function' || element == null) {
-			result += 'null';
+			result.push('null');
 		} else if (typeof(element) == 'boolean') {
-			result += element ? 'true' : 'false';
+			result.push(element ? 'true' : 'false');
 		} else if (typeof(element) == 'number') {
-			console.log(element.toString());
-			result += element.toString();
+			console.log(element);
+			result.push(element.toString());
 		} else if (typeof(element) == 'string') {
-			result += '"' + element + '"';
+			result.push('"' + element + '"');
 		} else if (typeof(element) == 'object') {
 			if (Array.isArray(element)) {
-				result += '[';
+				result.push('[');
 				if (element.length > 0) {
 					_.each(element, function(arrayElement, index) {
 						// need to adjust so last index doesn't indclude ','
-						result += convertTypes(arrayElement);
+						// console.log(arrayElement);
+						// need to return function!
+						// push in result array instead
+						convertTypes(arrayElement);
 						if (index < element.length - 1) {
-							result += ',';
+							result.push(',');
 						}
 					});
 				}
-				result += ']';
+				result.push(']');
 			} else {
 				//console.log('object: ', element);
 				if (element == {}) {
-					result += '{}';
+					result.push('{}');
 				} else {
-					result += '{';
+					result.push('{');
 					_.each(element, function(value, key) {
 						// need to adjust so last index doesn't indclude ','
-						result += '"' + key.toString() + '":' + convertTypes(value) + ',';
+						result.push('"' + key.toString() + '":');
+						convertTypes(value);
+						result.push(',');
 					});
-					result += '}';
+					result.push('}');
 				}
 			}
 		}
@@ -54,5 +59,5 @@ var stringifyJSON = function(obj) {
 	// if array then have to include []
 	// if object then have to include {}
 
-	return result;
+	return result.join('');
 };
