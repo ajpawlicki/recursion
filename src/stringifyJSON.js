@@ -15,7 +15,7 @@ var stringifyJSON = function(obj) {
 		} else if (typeof(element) == 'boolean') {
 			result += element ? 'true' : 'false';
 		} else if (typeof(element) == 'number') {
-			console.log(element);
+			console.log(element.toString());
 			result += element.toString();
 		} else if (typeof(element) == 'string') {
 			result += '"' + element + '"';
@@ -23,9 +23,12 @@ var stringifyJSON = function(obj) {
 			if (Array.isArray(element)) {
 				result += '[';
 				if (element.length > 0) {
-					_.each(element, function(arrayElement) {
+					_.each(element, function(arrayElement, index) {
 						// need to adjust so last index doesn't indclude ','
-						result += convertTypes(arrayElement) + ',';
+						result += convertTypes(arrayElement);
+						if (index < element.length - 1) {
+							result += ',';
+						}
 					});
 				}
 				result += ']';
