@@ -15,7 +15,7 @@ var stringifyJSON = function(obj) {
 		} else if (typeof(element) == 'boolean') {
 			result.push(element ? 'true' : 'false');
 		} else if (typeof(element) == 'number') {
-			console.log(element);
+			//console.log(element);
 			result.push(element.toString());
 		} else if (typeof(element) == 'string') {
 			result.push('"' + element + '"');
@@ -38,12 +38,14 @@ var stringifyJSON = function(obj) {
 			} else {
 				//console.log('object: ', element);
 				result.push('{');
-				var objLength = Object.keys(element).length;
 				_.each(element, function(value, key) {
 					// need to adjust so last index doesn't indclude ','
-					result.push('"' + key.toString() + '":');
-					convertTypes(value);
-					result.push(',');
+					if (typeof(value) != 'function' && typeof(value) != 'undefined') {
+						console.log(value);
+						result.push('"' + key.toString() + '":');
+						convertTypes(value);
+						result.push(',');
+					}
 				});
 				if (result[result.length - 1] != '{') {
 					result.pop();
