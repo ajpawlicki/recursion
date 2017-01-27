@@ -45,6 +45,9 @@ var stringifyJSON = function(obj) {
 					convertTypes(value);
 					result.push(',');
 				});
+				if (result[result.length - 1] != '{') {
+					result.pop();
+				}
 				result.push('}');
 			}
 		}
