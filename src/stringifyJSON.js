@@ -37,19 +37,15 @@ var stringifyJSON = function(obj) {
 				result.push(']');
 			} else {
 				//console.log('object: ', element);
-				if (element == {}) {
-					result.push('{}');
-				} else {
-					result.push('{');
-					var objLength = Object.keys(element).length;
-					_.each(element, function(value, key) {
-						// need to adjust so last index doesn't indclude ','
-						result.push('"' + key.toString() + '":');
-						convertTypes(value);
-						result.push(',');
-					});
-					result.push('}');
-				}
+				result.push('{');
+				var objLength = Object.keys(element).length;
+				_.each(element, function(value, key) {
+					// need to adjust so last index doesn't indclude ','
+					result.push('"' + key.toString() + '":');
+					convertTypes(value);
+					result.push(',');
+				});
+				result.push('}');
 			}
 		}
 	}
