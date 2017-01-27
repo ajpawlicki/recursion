@@ -10,13 +10,12 @@ var stringifyJSON = function(obj) {
 	// typeOf = string or number
 	// condition to find base case: object or array has no more nest
 	var convertTypes = function (element) {
-		if (typeof(element) == 'undefined') {
-			result += 'null';
-		} else if (typeof(element) == 'function') {
+		if (typeof(element) == 'undefined' || typeof(element) == 'function' || element == null) {
 			result += 'null';
 		} else if (typeof(element) == 'boolean') {
 			result += element ? 'true' : 'false';
 		} else if (typeof(element) == 'number') {
+			console.log(element);
 			result += element.toString();
 		} else if (typeof(element) == 'string') {
 			result += '"' + element + '"';
@@ -31,12 +30,17 @@ var stringifyJSON = function(obj) {
 				}
 				result += ']';
 			} else {
-				result += '{';
-				_.each(element, function(value, key) {
-					// need to adjust so last index doesn't indclude ','
-					result += '"' + key.toString() + '":' + convertTypes(value) + ',';
-				});
-				result += '}';
+				//console.log('object: ', element);
+				if (element == {}) {
+					result += '{}';
+				} else {
+					result += '{';
+					_.each(element, function(value, key) {
+						// need to adjust so last index doesn't indclude ','
+						result += '"' + key.toString() + '":' + convertTypes(value) + ',';
+					});
+					result += '}';
+				}
 			}
 		}
 	}
