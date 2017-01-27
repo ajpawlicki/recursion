@@ -41,7 +41,7 @@ var stringifyJSON = function(obj) {
 				_.each(element, function(value, key) {
 					// need to adjust so last index doesn't indclude ','
 					if (typeof(value) != 'function' && typeof(value) != 'undefined') {
-						console.log(value);
+						//console.log(value);
 						result.push('"' + key.toString() + '":');
 						convertTypes(value);
 						result.push(',');
