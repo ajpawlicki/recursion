@@ -41,6 +41,7 @@ var stringifyJSON = function(obj) {
 					result.push('{}');
 				} else {
 					result.push('{');
+					var objLength = Object.keys(element).length;
 					_.each(element, function(value, key) {
 						// need to adjust so last index doesn't indclude ','
 						result.push('"' + key.toString() + '":');
